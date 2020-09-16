@@ -1,10 +1,17 @@
 import AWS from 'aws-sdk';
 import {
-  NetworkError,
   ForbiddenError,
   GenericS3Error,
+  NetworkError,
   NoSuchKeyError
 } from '../errors/s3-errors';
+
+export const connect = ({ accessKeyId, secretAccessKey, region }) =>
+  new AWS.S3({
+    accessKeyId,
+    secretAccessKey,
+    region
+  });
 
 export const testConnectionS3Bucket = async ({
   bucketName,

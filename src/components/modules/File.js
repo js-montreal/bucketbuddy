@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Image, Placeholder, Icon } from 'semantic-ui-react';
+import { Card, Icon, Image, Placeholder } from 'semantic-ui-react';
 import FileDetailsModal from '../modals/file-details-modal';
 import { getObjectURL, getObjectTags } from '../utils/amazon-s3-utils';
 
@@ -28,7 +28,7 @@ const File = (props) => {
         setSrc(data);
       });
     }
-  }, [props.file.Key]);
+  }, [getImageUrl, props.file.Key, props.file.type]);
 
   /**
    * Gets the appropriate tags for whatever type of file requested

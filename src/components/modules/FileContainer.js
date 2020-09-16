@@ -3,7 +3,10 @@ import { Card } from 'semantic-ui-react';
 import File from './File';
 
 const FileContainer = (props) => {
-  const { bucket, files } = props;
+  const {
+    bucket,
+    files: { files }
+  } = props;
 
   return (
     <Card.Group className="file-container" doubling>

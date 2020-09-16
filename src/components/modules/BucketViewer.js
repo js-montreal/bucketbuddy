@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable */
+/* PS: had to do that because there's a lot of problems with 
+    how useEffect is used right now. Needs to be looked at */
+
+import React, { useEffect, useState } from 'react';
+import { Dimmer, Loader, Transition } from 'semantic-ui-react';
+import NavMenu from '../modules/NavMenu';
+import {
+  getFolderSchema,
+  getObjectTags,
+  listObjects
+} from '../utils/amazon-s3-utils';
 import BucketPath from './BucketPath';
 import BucketSettings from './BucketSettings';
 import FileContainer from './FileContainer';
-import { Dimmer, Loader, Transition } from 'semantic-ui-react';
-import {
-  listObjects,
-  getFolderSchema,
-  getObjectTags
-} from '../utils/amazon-s3-utils';
 import FolderMenu from './FolderMenu';
-import NavMenu from '../modules/NavMenu';
-import AWS from 'aws-sdk';
 
 export const schemaFileName = 'bucket-buddy-schema.json';
 
@@ -86,14 +89,9 @@ const BucketViewer = (props) => {
     const { history } = props;
 
     setPathInfo(newPath);
-    history.replace(
-      {
-        pathname: `/bucket-viewer/${bucket.name}/${newPath.path}`
-      },
-      {
-        bucket: bucket
-      }
-    );
+    history.replace({
+      pathname: `/bucket-viewer/${bucket.name}/${newPath.path}`
+    });
   };
 
   useEffect(() => {
